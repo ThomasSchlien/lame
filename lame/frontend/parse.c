@@ -856,6 +856,8 @@ long_help(const lame_global_flags * gfp, FILE * const fp, const char *ProgramNam
             "\n"
             );
     fprintf(fp,
+            "    --bandoption-24khz-iso-impl   use buggy scalefactor bands for 24kHz from ISO implementation instead from spec\n");
+    fprintf(fp,
             "  Filter options:\n"
             "  --lowpass <freq>        frequency(kHz), lowpass filter cutoff above freq\n"
             "  --lowpass-width <freq>  frequency(kHz) - default 15%% of lowpass freq\n"
@@ -1697,6 +1699,9 @@ parse_args_(lame_global_flags * gfp, int argc, char **argv,
                     error_printf("unknown buffer constraint '%s'\n", nextArg);
                     return -1;
                 }
+
+                T_ELIF("bandoption-24khz-iso-impl")
+                    lame_set_24kHz_bands(gfp, BANDOPTION24KHZ_ISO_IMPL);
 
                 T_ELIF("scale")
                     argUsed = getDoubleValue(token, nextArg, &double_value);

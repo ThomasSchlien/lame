@@ -141,6 +141,12 @@ typedef enum buffer_constraint_e {
     MDB_MAXIMUM=2
 } buffer_constraint;
 
+/* configure buggy scalefactor band */
+typedef enum bandoption24khz_e {
+    BANDOPTION24KHZ_ISO_DOC=0,
+    BANDOPTION24KHZ_ISO_IMPL=1
+} bandoption24khz;
+
 
 struct lame_global_struct;
 typedef struct lame_global_struct lame_global_flags;
@@ -390,6 +396,10 @@ int CDECL lame_get_extension(const lame_global_flags *);
 /* enforce strict ISO compliance.  default=0 */
 int CDECL lame_set_strict_ISO(lame_global_flags *, int);
 int CDECL lame_get_strict_ISO(const lame_global_flags *);
+
+/* configure buggy scalefactor bands.  default=0 */
+int CDECL lame_set_24kHz_bands(lame_global_flags *, int);
+int CDECL lame_get_24kHz_bands(const lame_global_flags *);
 
 
 /********************************************************************

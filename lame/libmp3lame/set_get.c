@@ -931,6 +931,33 @@ lame_get_strict_ISO(const lame_global_flags * gfp)
 }
 
 
+/* configure buggy scalefactor bands. */
+int
+lame_set_24kHz_bands(lame_global_flags * gfp, int val)
+{
+    if (is_lame_global_flags_valid(gfp)) {
+        /* default = 0 (disabled) */
+        /* enforce disable/enable meaning, if we need more than two values
+           we need to switch to an enum to have an apropriate representation
+           of the possible meanings of the value */
+        if (val != BANDOPTION24KHZ_ISO_DOC && val != BANDOPTION24KHZ_ISO_IMPL)
+            return -1;
+        gfp->bandoption_24khz = val;
+        return 0;
+    }
+    return -1;
+}
+
+int
+lame_get_24kHz_bands(const lame_global_flags * gfp)
+{
+    if (is_lame_global_flags_valid(gfp)) {
+        return gfp->bandoption_24khz;
+    }
+    return 0;
+}
+
+
 
 
 /********************************************************************

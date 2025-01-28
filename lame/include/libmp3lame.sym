@@ -64,6 +64,8 @@ lame_set_padding_type
 lame_get_padding_type
 lame_set_extension
 lame_get_extension
+lame_set_24kHz_bands
+lame_get_24kHz_bands
 lame_set_strict_ISO
 lame_get_strict_ISO
 lame_set_disable_reservoir

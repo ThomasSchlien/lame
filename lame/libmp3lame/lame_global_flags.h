@@ -87,6 +87,7 @@ struct lame_global_struct {
     int     error_protection; /* use 2 bytes per frame for a CRC
                                  checksum. default=0                    */
     int     strict_ISO;      /* enforce ISO spec as much as possible   */
+    int     bandoption_24khz;      /* configure buggy scalefactor bands  */
 
     int     disable_reservoir; /* use bit reservoir?                     */
 

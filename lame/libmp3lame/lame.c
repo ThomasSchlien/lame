@@ -941,6 +941,8 @@ lame_init_params(lame_global_flags * gfp)
     j = cfg->samplerate_index + (3 * cfg->version) + 6 * (cfg->samplerate_out < 16000);
     for (i = 0; i < SBMAX_l + 1; i++)
         gfc->scalefac_band.l[i] = sfBandIndex[j].l[i];
+    if(gfp->bandoption_24khz == BANDOPTION24KHZ_ISO_IMPL && j == 1)
+        gfc->scalefac_band.l[18] = 330;
 
     for (i = 0; i < PSFB21 + 1; i++) {
         int const size = (gfc->scalefac_band.l[22] - gfc->scalefac_band.l[21]) / PSFB21;
@@ -2413,6 +2415,7 @@ lame_init_old(lame_global_flags * gfp)
      * (and the value is no longer -1)
      */
     gfp->strict_ISO = MDB_MAXIMUM;
+    gfp->bandoption_24khz = BANDOPTION24KHZ_ISO_DOC;
 
     gfp->mode = NOT_SET;
     gfp->original = 1;
